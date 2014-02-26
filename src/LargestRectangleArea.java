@@ -14,6 +14,7 @@ public class LargestRectangleArea {
 
 	}
 
+	// key is to reduce the peak position
 	public static int largestRectangleArea(int[] height) {
 		if (height == null || height.length == 0) {
 			return 0;
@@ -42,6 +43,19 @@ public class LargestRectangleArea {
 		}
 
 		int top = s.peek();
+
+		// from left to right
+		if (!s.isEmpty()) {
+			int size = s.size();
+			int tail = s.get(size - 1);
+			for (int k = 0; k < size; k++) {
+				int currentIndex = s.get(k);
+				max = Math.max(max, height[currentIndex]
+						* (tail - currentIndex + 1));
+			}
+		}
+
+		// then from right to left
 		while (!s.isEmpty()) {
 			int index = s.pop();
 			int left;
