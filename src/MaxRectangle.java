@@ -50,6 +50,10 @@ public class MaxRectangle {
 				s.push(i++);
 
 			} else {
+				// the following block essentially calculates the max area for
+				// those height[m] to heign[n] where m..n all in stack and
+				// all >height[i] but height[m-1]<=height[i], and then pop out
+				// all m..n from stack
 				int index = s.pop();
 				int left = s.isEmpty() ? 0 : s.peek() + 1;
 				int right = i - 1;
